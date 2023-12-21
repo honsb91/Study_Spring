@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+a:link, a:visited {
+	text-decoration: none;
+	color: inherit;
+}
+
+table{
+	border-top: 2px solid #666;
+	
+}

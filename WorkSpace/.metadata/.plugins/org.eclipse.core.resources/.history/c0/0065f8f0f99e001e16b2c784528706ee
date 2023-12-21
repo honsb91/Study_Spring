@@ -1,0 +1,17 @@
+package com.hanul.web;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class TestController {
+	
+	//첫번째 테스트
+	@RequestMapping("/first")
+	public String first() {
+		// 웹브라우저의 first 라는 요청이 들어오면
+		// 응답화면연결: index.jsp
+		return "index";
+	}
+
+}

@@ -1,0 +1,6 @@
+package kr.co.smart.customer;
+
+public class CustomerVO {
+	private int customer_id;
+	private String name, gender, email , phone;
+}

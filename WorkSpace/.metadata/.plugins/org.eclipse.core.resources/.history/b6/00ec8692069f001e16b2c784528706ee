@@ -1,0 +1,23 @@
+package com.hanul.web;
+
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class MemberController {
+	
+	@RequestMapping("/joinRequest")
+	public void join() {
+		
+	}
+	
+	@RequestMapping("/member")
+	public String member() {
+		
+		
+		
+		return "member/join";
+	}
+
+}

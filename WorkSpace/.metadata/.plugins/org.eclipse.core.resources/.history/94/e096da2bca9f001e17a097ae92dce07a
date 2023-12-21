@@ -1,0 +1,5 @@
+package kr.co.smart.customer;
+
+public interface CustomerService {
+
+}
