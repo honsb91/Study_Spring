@@ -32,7 +32,7 @@
 		<div class="border-end bg-white" id="sidebar-wrapper">
 			<div class="sidebar-heading border-bottom bg-light">
 				<a href="<c:url value='/'/>">
-					<img src="img/hanul.logo.png" style="width: 20%">
+					<img src="<c:url value='/'/>img/hanul.logo.png" style="width: 20%">
 					<span>스마트 IoT 융합</span>
 				</a>
 			</div>

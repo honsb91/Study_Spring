@@ -8,9 +8,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3 class="mb-4">고객목록</h3>
+	<h3 class="mt-2">고객목록</h3>
+	<form method="post" action="list.cu">
+	<div class="row mb-3 justify-content-between">
+		<div class="col-auto">
+			<div class="input-group">
+				<label class="col-form-label me-2">고객명</label>
+				<input type="text" value="${name }" name="name" class="form-control">
+				<button class="btn btn-primary">검색</button>
+			</div>
+		</div>
+			<div class="col-auto">
+				<button type="button" class="btn btn-primary" onclick="location='register.cu'">고객등록</button>	
+			</div>
+	</div>
+	</form>
 	
-	<table class="table">
+	<table class="table tb-list">
 	<thead>
 		<tr><th>고객명</th><th>성별</th><th>이메일</th></tr>
 	</thead>

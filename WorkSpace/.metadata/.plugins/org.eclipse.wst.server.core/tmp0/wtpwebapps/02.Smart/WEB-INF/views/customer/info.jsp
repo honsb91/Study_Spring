@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h3 class="mb-4">고객정보</h3>
-	<table class="table">
+	<table class="table tb-row">
 	<colgroup>
 		<col width="180px">
 		<col>
@@ -27,5 +27,19 @@
 		<td>${vo.phone }</td>
 	</tr>
 	</table>
+	
+	<div class="btn-toolbar justify-content-center gap-2">
+		<button class="btn btn-primary" onclick="location='list.cu'">고객목록</button>
+		<button class="btn btn-warning" onclick="location='modify.cu?id=${vo.customer_id}'">정보수정</button>
+		<button class="btn btn-danger" onclick="go_delete()">정보삭제</button>
+	</div>
+	
+	<script >
+		function go_delete(){
+			if(confirm("정말 [${vo.name}] 고객 정보를 삭제하시겠습니까?") ){
+				location='delete.cu?id=${vo.customer_id}'	
+			}
+		}
+	</script>
 </body>
 </html>

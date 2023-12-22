@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body *{
+	vertical-align: middle;
+}
+
 a:link, a:visited {
 	text-decoration: none;
 	color: inherit;
@@ -19,4 +23,21 @@ table th, table td{
 
 table th:last-child, table td:last-child{
 	border-right: none;
+}
+
+table.tb-list tr {
+	height: 48px;
+}
+
+table.tb-row tr{
+	height: 60px;
+}
+
+table.tb-list th, table.tb-list td {
+	padding: 0px 16px;
+	text-align: center;
+}
+
+table.tb-row th, table.tb-row td {
+	padding: 10px 16px;
 }

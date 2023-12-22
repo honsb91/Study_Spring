@@ -8,6 +8,8 @@ public interface CustomerService {
 	int customer_register(CustomerVO vo);
 	// 고객목록 조회
 	List<CustomerVO> customer_list();
+	// 고객이름 목록 조회
+	List<CustomerVO> customer_list(String name);
 	// 고객정보 조회
 	CustomerVO customer_info(int id);
 	// 고객정보 변경저장
