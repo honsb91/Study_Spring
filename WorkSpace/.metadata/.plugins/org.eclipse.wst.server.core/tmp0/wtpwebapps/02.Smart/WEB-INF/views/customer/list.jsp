@@ -22,7 +22,7 @@
 		
 		<c:forEach items="${list}" var="vo">
 		<tr>
-			<td>${vo.name}</td>		
+			<td><a href="info.cu?id=${vo.customer_id}">${vo.name}</a></td>		
 			<td>${vo.gender}</td>		
 			<td>${vo.email}</td>		
 		</tr>

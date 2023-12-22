@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+
 <!DOCTYPE html>
 <html>
 <body>
@@ -11,7 +12,15 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Simple Sidebar - Start Bootstrap Template</title>
+<c:choose>
+	<c:when test="${category eq 'cu'}"><c:set var="title" value="고객관리- "/></c:when>
+	<c:when test="${category eq 'hr'}"><c:set var="title" value="사원관리- "/></c:when>
+	<c:when test="${category eq 'no'}"><c:set var="title" value="공지사항- "/></c:when>
+	<c:when test="${category eq 'bo'}"><c:set var="title" value="방명록- "/></c:when>
+	<c:when test="${category eq 'da'}"><c:set var="title" value="공공데이터- "/></c:when>
+	<c:when test="${category eq 'vi'}"><c:set var="title" value="시각화- "/></c:when>
+</c:choose>
+<title>${title}스마트 IoT 융합</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="<c:url value='/img/hanul.ico'/>" />
 <!-- Core theme CSS (includes Bootstrap)-->
@@ -28,12 +37,12 @@
 				</a>
 			</div>
 			<div class="list-group list-group-flush">
-				<a class="list-group-item list-group-item-action list-group-item-light p-3"	href="<c:url value='/list.cu'/>">고객관리</a> 
-				<a class="list-group-item list-group-item-action list-group-item-light p-3"	href="<c:url value='/hr/list'/>">사원관리</a> 
-				<a class="list-group-item list-group-item-action list-group-item-light p-3"	href="<c:url value='/notice/list'/>">공지사항</a> 
-				<a class="list-group-item list-group-item-action list-group-item-light p-3"	href="<c:url value='/board/list'/>">방명록</a> 
-				<a class="list-group-item list-group-item-action list-group-item-light p-3"	href="<c:url value='/data/list'/>">공공데이터</a> 
-				<a class="list-group-item list-group-item-action list-group-item-light p-3"	href="<c:url value='/visual/list'/>">시각화</a>
+				<a class="${category eq 'cu' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3"	href="<c:url value='/list.cu'/>">고객관리</a> 
+				<a class="<c:if test='${category == "hr"}'>active</c:if> list-group-item list-group-item-action list-group-item-light p-3"	href="<c:url value='/hr/list'/>">사원관리</a> 
+				<a class="${category eq 'no' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3"	href="<c:url value='/notice/list'/>">공지사항</a> 
+				<a class="${category eq 'bo' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3"	href="<c:url value='/board/list'/>">방명록</a> 
+				<a class="${category eq 'da' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3"	href="<c:url value='/data/list'/>">공공데이터</a> 
+				<a class="${category eq 'vi' ? 'active' : ''} list-group-item list-group-item-action list-group-item-light p-3"	href="<c:url value='/visual/list'/>">시각화</a>
 			</div>
 		</div>
 		<!-- Page content wrapper-->
