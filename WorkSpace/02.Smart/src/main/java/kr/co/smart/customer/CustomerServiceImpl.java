@@ -24,8 +24,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public CustomerVO customer_info(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.customer_info(id);
 	}
 
 	@Override

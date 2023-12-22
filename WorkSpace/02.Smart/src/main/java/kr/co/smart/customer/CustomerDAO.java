@@ -27,8 +27,7 @@ public class CustomerDAO implements CustomerService{
 
 	@Override
 	public CustomerVO customer_info(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return sql.selectOne("customer.info",id);
 	}
 
 	@Override

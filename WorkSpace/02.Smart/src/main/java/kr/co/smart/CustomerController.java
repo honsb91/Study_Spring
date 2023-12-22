@@ -20,8 +20,11 @@ public class CustomerController {
 	
 	//고객정보화면 요청
 	@RequestMapping("/info.cu")
-	public String info() {
-		
+	public String info(Model model, int id) {
+		//선택한 고객정보를 DB에서 조회 후 정보화면에 출력
+		//조회해온 정보를 화면에 출력할 수 있도록 Model 객체에 담기
+		CustomerVO vo =	service.customer_info(id);
+		model.addAttribute("vo",vo);
 		return "customer/info";
 	}
 	

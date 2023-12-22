@@ -15,16 +15,16 @@
 		<col>
 	</colgroup>
 	<tr><th>고객명</th>
-		<td></td>
+		<td>${vo.name }</td>
 	</tr>
 	<tr><th>성별</th>
-		<td></td>
+		<td>${vo.gender }</td>
 	</tr>
 	<tr><th>이메일</th>
-		<td></td>
+		<td>${vo.email }</td>
 	</tr>
 	<tr><th>전화번호</th>
-		<td></td>
+		<td>${vo.phone }</td>
 	</tr>
 	</table>
 </body>

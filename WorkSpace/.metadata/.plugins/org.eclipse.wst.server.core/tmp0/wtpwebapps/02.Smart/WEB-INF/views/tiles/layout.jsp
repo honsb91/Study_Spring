@@ -81,8 +81,8 @@
 			<div class="container-fluid">
 				<tiles:insertAttribute name="container"/>	
 			</div>
-			<footer class="border-tot py-4 text-center">
-				<div>coplight &copy; my website 2023</div>
+			<footer class="border-top py-4 text-center">
+				<div>Copyright&copy; HONSB Web 2023</div>
 			</footer>
 		</div>
 	</div>
