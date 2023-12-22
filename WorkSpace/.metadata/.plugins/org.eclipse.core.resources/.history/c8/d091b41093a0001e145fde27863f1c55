@@ -1,0 +1,12 @@
+package kr.co.smart.hr;
+
+public class HrService {
+	
+	//CRUD
+	//신규사원 등록
+	//사원목록 조회
+	//사원정보 조회
+	//사원정보변경 저장
+	//사원정보 삭제
+
+}

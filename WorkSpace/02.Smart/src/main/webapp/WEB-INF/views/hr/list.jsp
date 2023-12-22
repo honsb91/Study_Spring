@@ -24,13 +24,16 @@
 			<th>업무</th>
 			<th>입사일자</th>
 		</tr>
+		<c:forEach items="${list }" var="vo">
 		<tr>
-			<td>100</td>
-			<td>홍길동</td>
-			<td>영업부</td>
-			<td>영업</td>
-			<td>2023-12-22</td>
+			<td>${vo.employee_id }</td>
+			<td>${vo.name }</td>
+			<%-- <td>${vo.last_name } ${vo.first_name }</td> --%>
+			<td>${vo.department_name }</td>
+			<td>${vo.job_title }</td>
+			<td>${vo.hire_date }</td>
 		</tr>
+		</c:forEach>
 	</table>
 </body>
 </html>

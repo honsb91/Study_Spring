@@ -25,6 +25,7 @@
 <link rel="icon" type="image/x-icon" href="<c:url value='/img/hanul.ico'/>" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="<c:url value='/css/styles.css'/>" rel="stylesheet" />
+<link href="<c:url value='/css/common.css'/>" rel="stylesheet" />
 </head>
 <body>
 	<div class="d-flex" id="wrapper">
