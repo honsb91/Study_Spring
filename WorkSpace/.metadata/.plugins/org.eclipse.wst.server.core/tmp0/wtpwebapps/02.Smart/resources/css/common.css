@@ -41,3 +41,8 @@ table.tb-list th, table.tb-list td {
 table.tb-row th, table.tb-row td {
 	padding: 10px 16px;
 }
+
+a.text-link:hover{
+	text-decoration: underline;
+	font-weight: bold;
+}

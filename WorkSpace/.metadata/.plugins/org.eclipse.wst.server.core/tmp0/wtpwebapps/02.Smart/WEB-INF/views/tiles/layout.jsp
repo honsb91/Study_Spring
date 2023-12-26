@@ -25,7 +25,12 @@
 <link rel="icon" type="image/x-icon" href="<c:url value='/img/hanul.ico'/>" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="<c:url value='/css/styles.css'/>" rel="stylesheet" />
-<link href="<c:url value='/css/common.css'/>" rel="stylesheet" />
+<link href="<c:url value='/css/common.css'/>?<%=new java.util.Date() %>" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script type="text/javascript"
+		src=https://code.jquery.com/jquery-3.7.1.min.js></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="<c:url value='/js/common.js'/>?<%=new java.util.Date() %>"></script>
 </head>
 <body>
 	<div class="d-flex" id="wrapper">

@@ -1,0 +1,20 @@
+/**
+ * 공통 적용 함수 선언
+ */
+ 
+$(function(){
+		
+		if($(".date").length > 0){
+		   $.datepicker.setDefaults({
+			dateFormat: "yy-MM-dd",
+			changeYear : true,
+			changeMonth : true,
+		})	
+			
+		}
+		
+		
+		$(".date").datepicker();
+	
+	
+})

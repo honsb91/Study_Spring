@@ -1,0 +1,8 @@
+package kr.co.smart.hr;
+
+public class DepartmentVO {
+	
+	private int department_id;
+	private String department_name;
+
+}
