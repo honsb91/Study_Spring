@@ -35,7 +35,7 @@
 						-->
 						<div class="d-flex align-items-center justify-content-between mt-4 mb-0">
 							<a class="small" href="">회원가입</a> 
-							<a class="small" href="">비밀번호찾기</a>
+							<a class="small" href="findPassword">비밀번호찾기</a>
 						</div>
 					</form>
 				</div>

@@ -38,4 +38,14 @@ public class MemberService {
 	public int member_delete(String user_id) {
 		return 0;
 	}
+	
+	// 아이디와 이메일이 일치하는 회원정보 조회
+	public MemberVO member_userid_email(MemberVO vo) {
+		return sql.selectOne("member.useridEmail", vo);
+	}
+	
+	// 비밀번호를 변경저장하는 처리
+	public int member_resetPassword(MemberVO vo) {
+		return sql.update("member.resetPassword", vo);
+	}
 }
