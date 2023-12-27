@@ -17,7 +17,7 @@ public class CommonUtility {
 		mail.setCharset("utf-8");
 		
 		mail.setHostName("smtp.naver.com");
-		mail.setAuthentication(EMAIL, "gksdnfwlrdjq1!"); // 관리자의 이메일 주소, 해당 이메일의 비번
+		mail.setAuthentication(EMAIL, "gksdnfwlrdjq!"); // 관리자의 이메일 주소, 해당 이메일의 비번
 		mail.setSSLOnConnect(true); // 로그인버튼 클릭
 	}
 	
