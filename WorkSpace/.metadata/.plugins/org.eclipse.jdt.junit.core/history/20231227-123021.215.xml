@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="DBTest.login" project="02.Smart" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="kr.co.smart.DBTest" time="7.058" displayname="DBTest" uniqueid="[engine:junit-vintage]/[runner:kr.co.smart.DBTest]">
+    <testcase name="login" classname="kr.co.smart.DBTest" time="7.059" displayname="login" uniqueid="[engine:junit-vintage]/[runner:kr.co.smart.DBTest]/[test:login(kr.co.smart.DBTest)]"/>
+  </testsuite>
+</testrun>

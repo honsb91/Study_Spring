@@ -4,13 +4,12 @@
 
 	<!-- 사원목록 조회 -->
 	<select id="list" resultType="employee">
-		select department_name, job_title,
-		last_name||' '||first_name name, e.*
+		select department_name, job_title, last_name||' '||first_name name, e.*
 		from employees e left outer join
-		departments d on e.department_id =
-		d.department_id
-		inner join jobs j on
-		j.job_id = e.job_id
+		departments d on e.department_id = d.department_id
+		inner join jobs j on j.job_id = e.job_id
+		<if test="department_id > 0">where e.department_id = #{department_id}</if>
+		<if test="department_id == 0">where e.department_id is null</if>
 		order by employee_id
 	</select>
 	
@@ -39,6 +38,13 @@
 							 <if test="department_id != -1">department_id = #{department_id}</if>
 							 where employee_id = #{employee_id}
 	</update>
+	
+	<!-- 사원이 소속된 부서목록 조회 -->
+	<select id="employeeDepartmentList" resultType="department">
+		select distinct department_id, nvl(department_name, '소속없음') department_name
+		from employees e left outer join departments d using(department_id)
+		order by department_name
+	</select>
 	
 	<!-- 부서목록 조회 -->
 	<select id="departmentList" resultType="department">

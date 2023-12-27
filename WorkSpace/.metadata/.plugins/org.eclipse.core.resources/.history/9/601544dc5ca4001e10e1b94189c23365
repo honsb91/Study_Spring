@@ -1,0 +1,7 @@
+package kr.co.smart.member;
+
+public class MemberVO {
+	
+	private String user_id, user_pw, name, email, birth, phone, address, post;
+
+}

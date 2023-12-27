@@ -1,0 +1,17 @@
+package kr.co.smart;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/member")
+public class MemberController {
+	
+	// 로그인 화면 요청
+	@RequestMapping("/login")
+	public String login() {
+		
+		return "member/login";
+	}
+
+}

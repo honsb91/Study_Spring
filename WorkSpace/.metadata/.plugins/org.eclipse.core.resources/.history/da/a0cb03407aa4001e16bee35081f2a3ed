@@ -1,0 +1,5 @@
+package kr.co.smart.member;
+
+public class MemberService {
+
+}

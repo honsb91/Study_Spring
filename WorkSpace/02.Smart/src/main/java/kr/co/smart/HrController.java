@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.smart.hr.EmployeeVO;
 import kr.co.smart.hr.HrService;
@@ -18,11 +19,15 @@ public class HrController {
 	
 	// 사원목록 화면요청
 	@RequestMapping("/list")
-	public String list(HttpSession session, Model model) {
+	public String list(HttpSession session, Model model, @RequestParam(defaultValue="-1") int department_id) {
 		session.setAttribute("category", "hr");
 		
+		//특정부서에 속한 사원을 조회할 수 있도록 부서목록을 DB에서 조회 -> Model 객체에 담기
+		model.addAttribute("departments",service.employee_deaprtment_list());
+		
 		//DB에서 사원목록을 조회 후 목록화면에 출력 -> Model 객체에 담기
-		model.addAttribute("list",service.employee_list());
+		model.addAttribute("list",service.employee_list(department_id));
+		model.addAttribute("department_id", department_id);
 		return "hr/list";
 	}
 	

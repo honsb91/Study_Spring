@@ -1,0 +1,43 @@
+package kr.co.smart;
+
+import java.util.Scanner;
+
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import kr.co.smart.member.MemberVO;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
+public class DBTest {
+	
+	@Autowired @Qualifier("hanul")
+	private SqlSession sql;
+	
+	@Test
+	public void query_test() {
+		String today = sql.selectOne("member.today");
+		System.out.println("오늘 : " + today);
+	}
+	
+	@Test
+	public void join() {
+		// 키보드로 회원가입에 필요한 정보를 입력받아 처리하기
+		Scanner sc = new Scanner(System.in);
+		MemberVO vo = new MemberVO();
+		
+		System.out.println("이름: ");
+		vo.setName(sc.next());
+		System.out.println("아이디: ");
+		vo.setUser_id(sc.next());
+		System.out.println("비번: ");
+		System.out.println("이메일: ");
+		
+		sc.close();
+	}
+}

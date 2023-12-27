@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hr">
+
+	<!-- 사원목록 조회 -->
+	<select id="list" resultType="employee">
+		select department_name, job_title,
+		last_name||' '||first_name name, e.*
+		from employees e left outer join
+		departments d on e.department_id =
+		d.department_id
+		inner join jobs j on
+		j.job_id = e.job_id
+		order by employee_id
+	</select>
+	
+	<!-- 사원정보 조회 -->
+	<select id="info" resultType="employee">
+		select department_name, job_title, m.last_name||' '|| m.first_name manager_name,
+		e.last_name||' '||e.first_name name, e.*
+		from employees e 
+		left outer join	departments d on e.department_id = d.department_id
+		inner join jobs j on j.job_id = e.job_id
+        left outer join employees m on e.manager_id = m.employee_id 
+		where e.employee_id =  #{id}
+	</select>
+	
+	<!-- 사원정보 삭제 -->
+	<delete id="delete">
+		delete from employees where employee_id = #{id}
+	</delete>
+	
+	<!-- 사원정보 변경저장 -->
+	<update id="update">
+		update employees set last_name = #{last_name}, first_name = #{first_name},
+							 email = #{email}, phone_number = #{phone_number}, hire_date = #{hire_date},
+							 salary = #{salary}, job_id = #{job_id}, 
+							 <if test="department_id == -1">department_id = null</if>
+							 <if test="department_id != -1">department_id = #{department_id}</if>
+							 where employee_id = #{employee_id}
+	</update>
+	
+	<!-- 부서목록 조회 -->
+	<select id="departmentList" resultType="department">
+		select * from departments
+		order by department_name
+	</select>
+	
+	<!-- 업무목록 조회 -->
+	<select id="jobList" resultType="job">
+		select * from jobs
+		order by job_title
+	</select>
+	
+	<!-- 사원등록 -->
+	<insert id="insert">
+		insert into employees (last_name, first_name, email, phone_number, 
+							   hire_date, salary, job_id, department_id, manager_id )
+		values ( #{last_name}, #{first_name}, #{email}, #{phone_number}, #{hire_date},
+										 #{salary}, #{job_id}, 
+										 <choose>
+										 	<when test="department_id == -1">null</when>
+										 	<otherwise>#{department_id}</otherwise>
+										 </choose>
+									   , <choose>
+										 	<when test="manager_id == -1">null</when>
+										 	<otherwise>#{manager_id}</otherwise>
+										 </choose>
+			)							 
+	</insert>
+	
+	<!-- 회사의 사원목록조회 ( 매니저로 적용함 ) -->
+	<select id="managerList" resultType="employee">
+		select employee_id, last_name, first_name,
+			   last_name || ' ' || first_name name
+		from employees
+		order by name
+	</select>
+
+</mapper>

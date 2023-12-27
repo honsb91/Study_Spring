@@ -1,0 +1,18 @@
+package kr.co.smart.common;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class CommonUtility {
+
+	// 웹브라우저 요청의 루트반환
+	public String appURL(HttpServletRequest request) {
+		StringBuffer url = new StringBuffer("http://");
+		url.append(request.getServerName()).append(":");
+		url.append(request.getServerPort());
+		url.append(request.getContextPath());
+		return null;
+	}
+}
