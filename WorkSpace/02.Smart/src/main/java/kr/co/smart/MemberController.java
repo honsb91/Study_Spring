@@ -46,9 +46,16 @@ public class MemberController {
 			// 로그인 되지 않은경우
 			msg.append("alert('아이디나 비밀번호가 일치하지 않습니다'); history.go(-1)");
 		}else {
+			// 입력문자와 암호화된 문자
+			boolean match = pwEncoder.matches(user_pw, vo.getUser_pw());
+			if(match) {
+				// 로그인 된 경우 -> 웰컴페이지로 연결
+				msg.append("location='").append(common.appURL(request)).append("'"); // -> location=''
+			}else {
+				
+			}
 			
-			// 로그인 된 경우 -> 웰컴페이지로 연결
-			msg.append("location='").append(common.appURL(request)).append("'"); // -> location=''
+			
 		}
 		
 		msg.append("</script>");
