@@ -36,30 +36,26 @@ public class MemberController {
 	}
 	
 	// 로그인 처리 요청
-	@ResponseBody	@RequestMapping(value ="/smartLogin", produces = "text/html; charset=utf-8")
+	@ResponseBody
+	@RequestMapping(value = "/smartLogin", produces = "text/html; charset=utf-8")
 	public String login(HttpServletRequest request, String user_id, String user_pw, HttpSession session) {
-		// 화면에서 입력한 아이디/비번이 일치하는 회원정보를 조회
-		MemberVO vo =service.member_info(user_id);
-		
-		
+		MemberVO vo = service.member_info(user_id);
 		StringBuffer msg = new StringBuffer("<script>");
 		boolean match = false;
-		if(vo != null) {
+		if (vo != null) {
 			match = pwEncoder.matches(user_pw, vo.getUser_pw());
-			
-		if(match) {
+		}
+		if (match) {
 			session.setAttribute("loginInfo", vo);
 			msg.append("location='").append(common.appURL(request)).append("'");
-		}else {
-			msg.append("alert('아이디나 비밀번호가 일치하지 않습니다'); history.go(-1)");
 		}
-		
+		else {
+			msg.append("alert('아이디나 비밀번호가 일치하지 않습니다.'); history.go(-1)");
+
+		}
 		msg.append("</script>");
 		return msg.toString();
 	}
-		return user_pw;
-
-  }
 	
 	// 로그아웃 처리 요청
 	@RequestMapping("/logout")
