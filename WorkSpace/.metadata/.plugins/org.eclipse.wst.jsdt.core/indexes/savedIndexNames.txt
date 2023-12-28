@@ -6,6 +6,4 @@ INDEX VERSION 1.4+D:\Study_Spring\Study_Spring\WorkSpace\.metadata\.plugins\org.
 2267104198.index
 1494500016.index
 291482605.index
-2930312218.index
-2939723312.index
 1930081672.index
