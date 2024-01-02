@@ -1,7 +1,0 @@
-package kr.co.smart.hr;
-
-public class JobVO {
-	
-	private String job_id, job_title;
-
-}

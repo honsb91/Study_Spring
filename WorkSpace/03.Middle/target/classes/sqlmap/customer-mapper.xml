@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cu">
+
+	<select id="list" resultType="customer">
+		select * from customer 
+		<if test="query !=null ">
+			where customer_id like '%' || #{query} || '%'
+			or lower(name) like '%' || lower(#{query}) || '%'
+		</if>
+		order by name
+	</select>
+	
+	<select id="info" resultType="customer">
+		select * from customer
+		where customer_id = #{id}
+	</select>
+	
+	<delete id="delete">
+		delete from customer 
+		where customer_id = #{id}
+	</delete>
+	
+	<update id="update">
+		update customer
+		set name = #{name}, gender = #{gender}, email = #{email}, phone = #{phone} 
+		where customer_id = #{customer_id}
+	</update>
+	
+	<insert id="insert">
+		insert into customer(name, gender, email, phone)
+		values (#{name},#{gender},#{email},#{phone})
+	</insert>
+</mapper>

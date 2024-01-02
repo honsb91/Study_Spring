@@ -102,4 +102,37 @@ public class MemberController {
 		msg.append("</script>");
 		return msg.toString();
 	}
+	
+	// 비밀번호 변경
+	@RequestMapping("/changePassword")
+	public String changePassword() {
+		return "member/password";
+	}
+	
+	// 현재 비밀번호 확인처리 요청
+	@RequestMapping("/confirmPassword")
+	@ResponseBody
+	public int confirmPassword(String user_pw, HttpSession session) {
+		// 세션의 로그인정보 꺼내기
+		MemberVO vo = (MemberVO)session.getAttribute("loginInfo");
+		if( vo == null) {
+			// 로그인이 안 되어 있다면 로그인 화면으로 연결되도록
+			return -1;
+		}else {
+			// 입력한 현재 비번이 DB의 비번과 일치하는지
+			return pwEncoder.matches(user_pw, vo.getUser_pw()) ? 0 : 1;
+		}
+	}
+	
+	// 새 비밀번호로 변경저장 처리요청
+	@RequestMapping("/updatePassword")
+	@ResponseBody
+	public boolean updatePassword(String user_pw, HttpSession session) {
+		// 세션의 로그인 정보 꺼내기
+		MemberVO vo = (MemberVO)session.getAttribute("loginInfo");
+		// 입력 새 비번을 암호화하기
+		vo.setUser_pw(pwEncoder.encode(user_pw));
+		
+		return service.member_resetPassword(vo) == 1 ? true : false;
+	}
 }

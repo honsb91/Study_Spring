@@ -1,7 +1,0 @@
-package kr.co.smart.hr;
-
-public class EmployeeVO {
-	
-	private int employee_id;
-
-}
