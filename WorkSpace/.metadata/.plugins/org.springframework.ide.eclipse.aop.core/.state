@@ -2,4 +2,5 @@
 <aop-reference-model>
 <aop-project name="01.Web"/>
 <aop-project name="02.Smart"/>
+<aop-project name="Middle"/>
 </aop-reference-model>
