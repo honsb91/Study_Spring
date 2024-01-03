@@ -102,3 +102,9 @@ a.text-link:hover{
 .w-px300{
 	width: 300px !important;
 }
+
+.profile {
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;	
+}

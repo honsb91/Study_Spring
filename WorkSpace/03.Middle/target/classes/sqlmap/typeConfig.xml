@@ -3,5 +3,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="kr.co.customer.CustomerVO" alias="customer"/>
+		<typeAlias type="kr.co.member.MemberVO" alias="member"/>
 	</typeAliases>
 </configuration>

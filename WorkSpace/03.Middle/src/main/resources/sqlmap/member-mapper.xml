@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mb">
+
+	<select id="info" resultType="member">
+		select * from member
+		where user_id = #{user_id}
+	</select>
+	
+	<insert id="join">
+		insert into member (name, user_id, user_pw, gender, email, address, post, phone, birth, profile)
+		values (#{name}, #{user_id}, #{user_pw}, #{gender}, #{email}, 
+				#{address, jdbcType=VARCHAR}, #{post, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, 
+				#{birth, jdbcType=VARCHAR}, #{profile, jdbcType=VARCHAR})
+	</insert>
+
+</mapper>

@@ -1,5 +1,10 @@
 package kr.co.smart.common;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.mail.HtmlEmail;
@@ -61,5 +66,63 @@ public class CommonUtility {
 		url.append(request.getServerPort());			 // http://localhost:80, http://127.0.0.1:8080
 		url.append(request.getContextPath());			 // http://localhost:80/smart, http://127.0.0.1:8080/web
 		return url.toString();
+	}
+	
+	public String requestAPI(String apiURL) {
+	    try {
+	        URL url = new URL(apiURL);
+	        HttpURLConnection con = (HttpURLConnection)url.openConnection();
+	        con.setRequestMethod("GET");
+	        int responseCode = con.getResponseCode();
+	        BufferedReader br;
+	        if (responseCode == 200) { // 정상 호출
+	          br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
+	        } else {  // 에러 발생
+	          br = new BufferedReader(new InputStreamReader(con.getErrorStream(), "utf-8"));
+	        }
+	        String inputLine;
+	        StringBuilder res = new StringBuilder();
+	        while ((inputLine = br.readLine()) != null) {
+	          res.append(inputLine);
+	        }
+	        br.close();
+	        if (responseCode == 200) {
+	        	apiURL = res.toString();
+	           System.out.println(res.toString());
+	        }
+	      } catch (Exception e) {
+	        // Exception 로깅
+	      }
+	    return apiURL;
+	}
+	
+	public String requestAPI(String apiURL, String property) {
+	    try {
+	        URL url = new URL(apiURL);
+	        HttpURLConnection con = (HttpURLConnection)url.openConnection();
+	        con.setRequestMethod("GET");
+	        con.setRequestProperty("Authorization", property);
+	        
+	        int responseCode = con.getResponseCode();
+	        BufferedReader br;
+	        if (responseCode == 200) { // 정상 호출
+	          br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
+	        } else {  // 에러 발생
+	          br = new BufferedReader(new InputStreamReader(con.getErrorStream(), "utf-8"));
+	        }
+	        String inputLine;
+	        StringBuilder res = new StringBuilder();
+	        while ((inputLine = br.readLine()) != null) {
+	          res.append(inputLine);
+	        }
+	        br.close();
+	        if (responseCode == 200) {
+	        	apiURL = res.toString();
+	           System.out.println(res.toString());
+	        }
+	      } catch (Exception e) {
+	        // Exception 로깅
+	      }
+	    return apiURL;
 	}
 }

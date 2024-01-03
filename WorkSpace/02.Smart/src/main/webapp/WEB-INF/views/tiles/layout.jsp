@@ -27,6 +27,8 @@
 <link href="<c:url value='/css/styles.css'/>" rel="stylesheet" />
 <link href="<c:url value='/css/common.css'/>?<%=new java.util.Date() %>" rel="stylesheet" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <script type="text/javascript"
 		src=https://code.jquery.com/jquery-3.7.1.min.js></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
@@ -65,7 +67,7 @@
 						<span class="navbar-toggler-icon"></span>
 					</button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+						<ul class="navbar-nav ms-auto mt-2 mt-lg-0 align-items-center">
 							<!-- 로그인하지 않은 경우 -->
 							<c:if test="${empty loginInfo }">
 								<li class="nav-item active"><a class="nav-link" href="<c:url value='/member/login'/>">로그인</a></li>
@@ -74,16 +76,25 @@
 							
 							<!-- 로그인이 된 경우 -->
 							<c:if test="${! empty loginInfo }">
+							<li class="nav-item me-3">
+								<c:choose>
+									<c:when test="${empty loginInfo.profile }"><i class="font-profile fa-regular fa-user"></i></c:when>							
+									<c:otherwise><img class="profile" src="${loginInfo.profile }"></c:otherwise>
+								</c:choose>
+							</li>
+							
 							<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" id="navbarDropdown" 
 									href="#" role="button" data-bs-toggle="dropdown" 
 									aria-haspopup="true" aria-expanded="false">${loginInfo.name }</a>
 								<div class="dropdown-menu dropdown-menu-end"
 									aria-labelledby="navbarDropdown">
+									<c:if test="${empty loginInfo.social }">
 									<a class="dropdown-item" href="#!">${loginInfo.user_id }</a> 
 									<a class="dropdown-item" href="#!">My Page</a>
 									<a class="dropdown-item" href="<c:url value='/member/changePassword'/>">비밀번호변경</a>
 									<div class="dropdown-divider"></div>
+									</c:if>
 									<a class="dropdown-item" href="<c:url value='/member/logout'/>">로그아웃</a>
 								</div>
 							</li>

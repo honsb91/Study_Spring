@@ -29,6 +29,7 @@ public class HomeController {
 	@Autowired
 	private MemberService member;
 	
+	//1bf0460a-7ded-411c-bb0b-0ee0b9c66b55
 	// 주소 자동주입
 	@Autowired 
 	private BCryptPasswordEncoder pwEncoder;
@@ -36,7 +37,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpSession session, Model model) {
 		// Test 하는동안 사용할 수 있도록 임시 로그인처리
-		String user_id="sktmdqls", user_pw="1bf0460a-7ded-411c-bb0b-0ee0b9c66b55";
+		String user_id="sktmdqls", user_pw="";
 		MemberVO vo = member.member_info(user_id);
 		if( pwEncoder.matches(user_pw, vo.getUser_pw()) ) {
 			session.setAttribute("loginInfo", vo);

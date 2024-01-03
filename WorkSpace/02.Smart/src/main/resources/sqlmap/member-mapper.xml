@@ -28,4 +28,21 @@
 		update member set user_pw = #{user_pw}
 		where user_id = #{user_id}
 	</update>
+	
+	<!-- 회원가입 -->
+	<insert id="join">
+		insert into member (user_id, user_pw, name, email, gender, phone, post,
+							address, birth, profile, social)
+		values (#{user_id}, #{user_pw, jdbcType=VARCHAR}, #{name}, #{email}, #{gender}, 
+				#{phone, jdbcType=VARCHAR},	#{post, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR}, 
+				#{birth, jdbcType=VARCHAR}, #{profile, jdbcType=VARCHAR}, #{social, jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 회원정보 변경저장 -->
+	<update id="update">
+		update member set name = #{name}, email = #{email}, gender = #{gender},
+						  phone = #{phone}, post = #{post, jdbcType=VARCHAR}, address = #{address, jdbcType=VARCHAR},
+						  birth = #{birth, jdbcType=VARCHAR}, profile = #{profile} 
+		where user_id = #{user_id}
+	</update>
 </mapper>
