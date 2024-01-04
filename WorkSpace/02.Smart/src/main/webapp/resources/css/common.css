@@ -108,3 +108,19 @@ a.text-link:hover{
 	height: 38px;
 	border-radius: 50%;	
 }
+
+/* + : 바로 다음에 오는 형제요소 */
+.date + .date-delete{
+	position: relative;
+	right: 30px;
+	display: none;
+}
+
+/* 파일선택 태그는 폰트이미지로 대체해서 사용 */
+input[type=file]{
+	display: none;
+}
+
+.file-preview img{
+	max-height: 38px;
+}

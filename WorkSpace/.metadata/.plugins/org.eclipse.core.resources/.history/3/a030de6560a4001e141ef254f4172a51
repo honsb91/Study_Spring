@@ -1,8 +1,0 @@
-package kr.co.smart;
-
-import org.junit.runner.RunWith;
-
-@RunWith
-public class DBTest {
-
-}

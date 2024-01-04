@@ -33,6 +33,7 @@
 		<beans:property name="definitions" value="/WEB-INF/views/tiles/config.xml"/>
 	</beans:bean>
 	
+	<context:property-placeholder location="classpath:info.properties"/>
 	<context:component-scan base-package="kr.co.smart" />
 	
 	

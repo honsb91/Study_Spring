@@ -19,6 +19,7 @@
 	<c:when test="${category eq 'bo'}"><c:set var="title" value="방명록- "/></c:when>
 	<c:when test="${category eq 'da'}"><c:set var="title" value="공공데이터- "/></c:when>
 	<c:when test="${category eq 'vi'}"><c:set var="title" value="시각화- "/></c:when>
+	<c:when test="${category eq 'vi'}"><c:set var="title" value="회원가입- "/></c:when>
 </c:choose>
 <title>${title}스마트 IoT 융합</title>
 <!-- Favicon-->
@@ -70,8 +71,8 @@
 						<ul class="navbar-nav ms-auto mt-2 mt-lg-0 align-items-center">
 							<!-- 로그인하지 않은 경우 -->
 							<c:if test="${empty loginInfo }">
-								<li class="nav-item active"><a class="nav-link" href="<c:url value='/member/login'/>">로그인</a></li>
-								<li class="nav-item"><a class="nav-link" href="">회원가입</a></li>
+								<li class="nav-item"><a class="nav-link" href="<c:url value='/member/login'/>">로그인</a></li>
+								<li class="nav-item"><a class="nav-link" href="<c:url value='/member/join'/>">회원가입</a></li>
 							</c:if>
 							
 							<!-- 로그인이 된 경우 -->

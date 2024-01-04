@@ -12,7 +12,7 @@
 }
 
 #kakao {
-	background: url("");
+	background: url("<c:url value='/img/kakao.png'/>")	center/contain no-repeat #03c75a;
 }
 </style>
 </head>
