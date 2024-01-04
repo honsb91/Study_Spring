@@ -178,8 +178,12 @@
 	
 	// 입력항목 체크
 	$(".check-item").on('keyup', function(){
+		if($(this).attr("name")=="user_id" && e.keyCode==13) {
+			idCheck();
+	}else{
 		member.showStatus($(this))
-	})
+	}
+})
 	
 	// 아이디 중복확인
 	$("#btn-userid").click(function(){
@@ -218,7 +222,14 @@
 			return;
 		}
 		
-		/*  if( invalidStatus($("[name=user_pw]"))) return;*/
+		// 중복확인해서 사용가능한 경우만 submit 가능
+		var desc = $("[name=user_id]").closest(".input-check").find(".desc").text();
+		if (desc.indexOf("사용가능")==-1){
+			alert("회원가입 불가! \n" + desc);
+			return
+		}
+		
+		if( invalidStatus($("[name=user_pw]"))) return;
 		if( invalidStatus($("[name=user_pw_ck]"))) return;
 		if( invalidStatus($("[name=email]"))) return;
 		
@@ -231,6 +242,7 @@
 			return false;
 		else{
 			alert("회원가입 불가!\n" + tag.attr("title") + " " +  status.desc)
+			tag.focus()
 			return true;	
 		}
 	}
