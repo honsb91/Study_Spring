@@ -33,6 +33,9 @@
 		<beans:property name="definitions" value="/WEB-INF/views/tiles/config.xml"/>
 	</beans:bean>
 	
+	<beans:bean id="multipartResolver" 
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></beans:bean>
+	
 	<context:property-placeholder location="classpath:info.properties"/>
 	<context:component-scan base-package="kr.co.smart" />
 	

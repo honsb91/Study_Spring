@@ -1,14 +1,21 @@
 package kr.co.smart.common;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.mail.EmailAttachment;
 import org.apache.commons.mail.HtmlEmail;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.smart.member.MemberVO;
 
@@ -125,4 +132,65 @@ public class CommonUtility {
 	      }
 	    return apiURL;
 	}
+	
+	// 파일업로드
+	public String fileUpload(String category, MultipartFile file, HttpServletRequest request) {
+		// d://app/upload/profile/2024/01/05/abc.png
+		String upload = "d://app/upload/" + category + new SimpleDateFormat("/yyyy/MM/dd/").format(new Date()) ;
+		File dir = new File(upload);
+		if(! dir.exists() ) dir.mkdirs();
+		
+		String filename = UUID.randomUUID().toString() + "."
+						+StringUtils.getFilenameExtension(file.getOriginalFilename());
+		
+		try {
+			file.transferTo(new File(upload, filename));
+		}catch(Exception e) {
+			
+		}
+		
+		
+		return upload.replace("d://app/upload", fileURL(request)) + "/" + filename;
+	}
+	
+	// 파일서비스 받을 URL
+		public String fileURL(HttpServletRequest request) {
+			StringBuffer url = new StringBuffer("http://");
+			url.append(request.getServerName()).append(":"); // http://localhost:, http://127.0.0.1:
+			url.append(request.getServerPort());			 // http://localhost:80, http://127.0.0.1:8080
+			url.append("/file");			 // http://localhost:80/smart, http://127.0.0.1:8080/web
+			return url.toString();
+		}
+		
+		// 회원가입 축하메일 보내기
+		public void sendWelcome(MemberVO vo, String welcomeFile) {
+			HtmlEmail mail = new HtmlEmail();
+			connectMailServer(mail);
+			
+			try {
+				mail.setFrom(EMAIL);
+				mail.addTo(vo.getEmail(), vo.getName());
+				
+				mail.setSubject("한울 스마트 IoT 융합 과정 가입");
+				
+				StringBuffer msg = new StringBuffer();
+				msg.append("<body>");
+				msg.append("<h3>스마트 IoT 융합 과정</h3>");
+				msg.append("<div>과정 가입을 축하합니다.</div>");
+				msg.append("<div>프로젝트까지 마무리하시고 취업에 성공하시길 바랍니다.</div>");
+				msg.append("<div>첨부된 파일을 확인하신 후 등교하세요.</div>");
+				msg.append("</body>");
+				mail.setHtmlMsg(msg.toString());
+				
+				// 파일첨부하기
+				EmailAttachment file = new EmailAttachment();
+				file.setPath(welcomeFile);
+				mail.attach(file);
+				
+				mail.send();
+				
+			}catch(Exception e) {
+				
+			}
+		}
 }

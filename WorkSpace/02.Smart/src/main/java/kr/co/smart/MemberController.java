@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -368,5 +369,35 @@ public class MemberController {
 	public boolean idCheck(String user_id) {
 		// 아이디 사용가능 : true       아이디 사용중 : false
 		return service.member_info(user_id) == null ? true : false;
+	}
+	
+	// 회원가입처리 요청
+	@ResponseBody
+	@RequestMapping(value =  "/register", produces = "text/html; charset=utf-8")
+	public String join(MemberVO vo, HttpServletRequest request, MultipartFile file, HttpSession session) {
+		// 프로필이미지 파일 첨부한 경우
+		if( ! file.isEmpty()) {
+			vo.setProfile(common.fileUpload("profile", file, request));
+		}
+		
+		// 화면에서 입력한 정보로 DB에 신규회원정보를 저장 -> 웰컴페이지로 연결
+		vo.setUser_pw(pwEncoder.encode(vo.getUser_pw()));
+		
+		StringBuffer msg = new StringBuffer("<script>");
+		if (service.member_join(vo) == 1) {
+			
+			// 회원가입 축하메일 보내기
+			String welcome = session.getServletContext().getRealPath("resources/files/상속.pdf");
+			common.sendWelcome(vo, welcome);
+			
+			session.setAttribute("loginInfo", msg);
+			msg.append("alert('회원가입을 축하합니다'); location='")
+						.append(request.getContextPath()) .append("' ");
+		}else {
+			msg.append("alert('회원가입 실패'); history.go(-1); ");
+		}
+		
+		msg.append("</script>");
+		return msg.toString();
 	}
 }

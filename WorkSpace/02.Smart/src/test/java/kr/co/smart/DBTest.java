@@ -34,17 +34,20 @@ public class DBTest {
 		Scanner sc = new Scanner(System.in);
 		MemberVO vo = new MemberVO();
 		
-		System.out.println("이름: ");
+		System.out.print("이름: ");
 		vo.setName(sc.next());
 		
-		System.out.println("아이디: ");
+		System.out.print("아이디: ");
 		vo.setUser_id(sc.next());
 		
-		System.out.println("비번: ");
+		System.out.print("비번: ");
 		vo.setUser_pw(pwEncoder.encode(sc.next()));
 		
-		System.out.println("이메일: ");
+		System.out.print("이메일: ");
 		vo.setEmail(sc.next());
+		
+		System.out.print("관리자?(Y/N)");
+		vo.setRole(sc.next().toLowerCase().equals("y") ? "ADMIN" : "USER"); 
 		
 		sc.close();
 		
